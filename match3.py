@@ -203,7 +203,6 @@ def parse_input(s):
 TODO:
 add a win condition (score threshold or limited moves)
 make a row appear at bottom and push up
-make selected gem highlighted
 """
 def main():
     print("Match-3 (terminal). Swap adjacent gems to form 3+ runs.")
@@ -230,16 +229,9 @@ def main():
                             board.swap(board.selected, (row, col))
                             matches = board.find_matches()
                             if matches:
-                                # for r, c in matches:
-                                #     # pygame.draw.rect(board.screen, COLORS[gem], (c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-                                #     pygame.draw.rect(board.screen, (255, 255, 255), (c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE), 3)
-                                # pygame.display.flip()
-                                # pygame.time.wait(300)  # Pause briefly to show matches
                                 cleared, cascades = board.resolve()
                                 print(f"Cleared {cleared} gems with {cascades} cascade(s). Moves: {moves}")
-                            # else:
-                            #     board.swap(board.selected, (row, col))  # Undo swap
-                            #     print("Swap did not create a match. Try a different swap.")
+
                         board.selected = None
 
         board.screen.fill((255, 255, 255))  # Clear screen
@@ -254,33 +246,6 @@ def main():
         
         pygame.display.flip()
         clock.tick(30)  # Limit to 30 frames per second
-    # while True:
-    #     board.print()
-    #     s = input("Enter swap (r1 c1 r2 c2) or q: ").strip()
-    #     if s.lower() in ('q', 'quit', 'exit'):
-    #         print("Goodbye.")
-    #         break
-    #     parsed = parse_input(s)
-    #     if not parsed:
-    #         print("Invalid input. Use four numbers like: 1 1 1 2")
-    #         continue
-    #     a, b = parsed
-    #     if not board.in_bounds(*a) or not board.in_bounds(*b):
-    #         print("Coordinates out of bounds.")
-    #         continue
-    #     if not board.are_adjacent(a, b):
-    #         print("Tiles must be adjacent.")
-    #         continue
-    #     board.swap(a, b)
-    #     matches = board.find_matches()
-    #     if not matches:
-    #         # undo swap if no match
-    #         board.swap(a, b)
-    #         print("Swap did not create a match. Try a different swap.")
-    #         continue
-    #     moves += 1
-    #     cleared, cascades = board.resolve()
-    #     print(f"Cleared {cleared} gems with {cascades} cascade(s). Moves: {moves}")
 
 if __name__ == "__main__":
     try:
