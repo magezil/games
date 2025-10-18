@@ -1,2 +1,2 @@
 # games
-Games created with the help of ai
+Games created with the help of GitHub Copilot
